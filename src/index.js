@@ -1,12 +1,14 @@
-/* global d3 */
+import * as d3 from "d3";
+
+import baby_names from "../dat/gfds.json";
+
+import "./gui.css";
 
 const COLOR_BLUE = "#11abc1";
 const COLOR_DEFAULT = "#ddedf4";
 const COLOR_GREEN = "#4bac3f";
 const COLOR_RED = "#df3062";
 
-
-let baby_names = null;
 let current_index = null;
 let comparison_result = {};
 
@@ -16,11 +18,11 @@ let boys_table = null;
 let display_year = null;
 
 const get_fill_color = (name) => {
-
     const current = comparison_result[name];
     if (current.old === 0) {
         return COLOR_GREEN; // new entry
-    } else if (current.old === -1) {
+    }
+    if (current.old === -1) {
         return COLOR_BLUE; // reentry
     }
     return COLOR_DEFAULT;
@@ -39,7 +41,7 @@ const get_positions = (name, initial = false) => {
 };
 
 /**
- * @param {string} name 
+ * @param {string} name
  *
  * @returns {{symbol: string, color: string}}
  */
@@ -54,11 +56,11 @@ const get_change_symbol = (name) => {
         symbol = "▼";
         color = COLOR_RED;
     }
-    return {symbol, color};
+    return { symbol, color };
 };
 
 const update_comparison = (dataset, initial = false) => {
-    dataset.forEach(entry => {
+    dataset.forEach((entry) => {
         const current = comparison_result[entry.name] || null;
         if (current) {
             // remember best position
@@ -86,16 +88,16 @@ const enterRects = (enter, initial = false) => enter
     .append("g")
     .attr("transform", (_d, _i) => `translate(${10},${350})`)
     .style("opacity", 0)
-    .call(g => g.transition().duration(initial ? 0 : 1000)
+    .call((g) => g.transition().duration(initial ? 0 : 1000)
         .attr("transform", (_d, i) => `translate(${10},${10 + i * 30})`)
         .style("opacity", 1))
-    .call(g => g.append("rect")
+    .call((g) => g.append("rect")
         .attr("width", 280)
         .attr("height", 25)
         .style("fill", (d, _i) => get_fill_color(d.name))
         .style("opacity", 0.7)
         .attr("rx", 3))
-    .call(g => {
+    .call((g) => {
         const text = g.append("text")
             .attr("x", 5)
             .attr("dy", "1.2em")
@@ -104,27 +106,27 @@ const enterRects = (enter, initial = false) => enter
             .raise();
 
         text.append("tspan")
-            .attr("class", "Position").text(d => get_positions(d.name, initial))
-            //.attr("x", d => (d.pos < 10) ? 10 : 0);
+            .attr("class", "Position").text((d) => get_positions(d.name, initial));
+        // .attr("x", d => (d.pos < 10) ? 10 : 0);
         text.append("tspan").attr("class", "Name")
-            .text(d => d.name)
+            .text((d) => d.name)
             .attr("dx", 10);
         text.append("tspan").attr("class", "Change");
     });
 
 const updateRects = (update) => update
     .call((g) => g.transition().duration(1000).attr("transform", (_d, i) => `translate(${10},${10 + i * 30})`))
-    .call(g => g.select("text tspan.Position").text(d => get_positions(d.name)))
-    .call(g => g.select("text tspan.Name").text(d => d.name))
-    .call(g => g.select("text tspan.Change").text(function (d) {
-        const {symbol, color} = get_change_symbol(d.name);
+    .call((g) => g.select("text tspan.Position").text((d) => get_positions(d.name)))
+    .call((g) => g.select("text tspan.Name").text((d) => d.name))
+    .call((g) => g.select("text tspan.Change").text((d) => {
+        const { symbol, color } = get_change_symbol(d.name);
         d3.select(this).style("fill", color);
         return symbol;
     }))
-    .call(g => g.select("rect").style("fill", () => COLOR_DEFAULT));
+    .call((g) => g.select("rect").style("fill", () => COLOR_DEFAULT));
 
 const exitRects = (exit) => exit
-    .call(g => g.select("rect").style("fill", () => COLOR_RED))
+    .call((g) => g.select("rect").style("fill", () => COLOR_RED))
     .call((g) => g
         .transition()
         .duration(1000)
@@ -134,12 +136,12 @@ const exitRects = (exit) => exit
 
 const update_data_table = (table, data, initial = false) => {
     table.selectAll("g")
-    .data(data, d => d.name)
-    .join(
-        enter => enterRects(enter, initial),
-        update => updateRects(update),
-        exit => exitRects(exit)
-    )
+        .data(data, (d) => d.name)
+        .join(
+            (enter) => enterRects(enter, initial),
+            (update) => updateRects(update),
+            (exit) => exitRects(exit)
+        );
 };
 
 const update_presentation = (initial = false) => {
@@ -147,9 +149,9 @@ const update_presentation = (initial = false) => {
     let current_dataset = baby_names[current_index];
     let year = current_dataset.year;
     if (year.includes("W")) {
-        year = year.substring(0, 4) + " ohne neue Bundesländer";
+        year = `${year.substring(0, 4)} ohne neue Bundesländer`;
     } else if (year.includes("O")) {
-        year = year.substring(0, 4) + " mit neuen Bundesländern";
+        year = `${year.substring(0, 4)} mit neuen Bundesländern`;
     }
     display_year.textContent = year;
 
@@ -178,9 +180,7 @@ const create_table = (name) => {
         .attr("height", 310);
 };
 
-const init = (data) => {
-
-    baby_names = data;
+const init = () => {
 
     container = document.createElement("div");
     container.className = "Container";
@@ -197,7 +197,7 @@ const init = (data) => {
     button_prev_year.addEventListener("click", () => {
 
         current_index = current_index + 1;
-    
+
         // omit certain datasets
         while (baby_names[current_index].year.endsWith("O") && current_index < baby_names.length) {
             current_index = current_index + 1;
@@ -206,7 +206,7 @@ const init = (data) => {
         if (current_index >= baby_names.length) {
             current_index = 0;
         }
-    
+
         update_presentation();
     });
     button_prev_year.setAttribute("disabled", "disabled");
@@ -225,7 +225,7 @@ const init = (data) => {
         if (current_index < 0) {
             current_index = baby_names.length - 1;
         }
-    
+
         update_presentation();
     });
 
@@ -238,14 +238,6 @@ const init = (data) => {
     update_presentation(true);
 };
 
-fetch("dat/gfds.json").then(response => response.json())
-    .then((result) => init(result));
+console.log(baby_names);
 
-// TODO
-// create legend
-
-// count and display number of 1st, 2nd and 3rd places -> circle in medal color gold, silver, bronce with number count in it
-
-// count number of reentries
-
-// show line graph of selected name
+init();

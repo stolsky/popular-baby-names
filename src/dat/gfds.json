@@ -201,4 +201,5 @@
 },{
 	"year":"1977",
 	"girls":[{"name":"Stefanie","pos":1},{"name":"Christina/Christine","pos":2},{"name":"Sandra","pos":3},{"name":"Tanja","pos":4},{"name":"Melanie","pos":5},{"name":"Nicole","pos":6},{"name":"Kathrin","pos":7},{"name":"Simone","pos":8},{"name":"Kerstin","pos":9},{"name":"Daniela","pos":10}],
-	"boys":[{"name":"Christian","pos":1},{"name":"Michael","pos":2},{"name":"Stefan","pos":3},{"name":"Markus","pos":4},{"name":"Daniel","pos":5},{"name":"Alexander","pos":6},{"name":"Thomas","pos":7},{"name":"Matthias","pos":8},{"name":"Andreas","pos":9},{"name":"Sven","pos":10}]}]
+	"boys":[{"name":"Christian","pos":1},{"name":"Michael","pos":2},{"name":"Stefan","pos":3},{"name":"Markus","pos":4},{"name":"Daniel","pos":5},{"name":"Alexander","pos":6},{"name":"Thomas","pos":7},{"name":"Matthias","pos":8},{"name":"Andreas","pos":9},{"name":"Sven","pos":10}]
+}]
