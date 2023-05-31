@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "dev": "npx webpack serve",
+    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "",
