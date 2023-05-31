@@ -22,7 +22,7 @@ describe("check if json data is available", () => {
     let json_data;
 
     beforeAll((done) => {
-        loadJSON("dat/gfds.json")
+        loadJSON("src/dat/gfds.json")
             .then((response) => {
                 json_data = JSON.parse(response);
                 done();
