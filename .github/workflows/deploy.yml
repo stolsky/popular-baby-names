@@ -2,10 +2,14 @@ name: Build and Deploy
 
 on:
   pull_request:
-    branches: [ "master" ]
+    types:
+      - closed
+    branches:
+      - master
 
 jobs:
-  build:
+  if_merged:
+    if: github.event.pull_request.merged == true
     name: Build
     runs-on: ubuntu-latest
 
@@ -32,7 +36,7 @@ jobs:
   
   deploy:
     name: Deploy
-    needs: build
+    needs: if_merged
     
     environment:
       name: github-pages
