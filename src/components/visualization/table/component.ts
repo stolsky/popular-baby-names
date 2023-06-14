@@ -3,7 +3,7 @@ import './style.css'
 import { TDimension, TMargin, TNameData } from '../../shared_types';
 import Diagram from '../Diagram';
 import { validate_class_name } from '../../../publish_subscribe/data_manager';
-import { EnterElement, Selection, transition } from 'd3';
+import { EnterElement, Selection } from 'd3';
 
 class Table extends Diagram {
 
