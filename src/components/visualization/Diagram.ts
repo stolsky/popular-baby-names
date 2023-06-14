@@ -58,7 +58,7 @@ class Diagram {
 
     protected dehighlight = () => {
         ['g', 'path', 'circle'].forEach((nodeName) => selectAll(nodeName)
-            .transition().duration(500)
+            .transition().duration(Diagram.DEFAULT_HIGHLIGHT_DURATION)
             .style('opacity', 1)
         )
     }
