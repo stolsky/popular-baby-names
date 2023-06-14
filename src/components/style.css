@@ -1,0 +1,13 @@
+@import "/icomoon/style.css";
+
+body {
+    margin: 0;
+    font-size: 100%;
+    font-family: Verdana, sans-serif;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
