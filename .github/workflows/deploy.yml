@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:
+  pages: write
+  id-token: write
+
 jobs:
   build:
     name: Build
@@ -33,10 +37,6 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    
-    permissions:
-      pages: write
-      id-token: write
     
     environment:
       name: github-pages
