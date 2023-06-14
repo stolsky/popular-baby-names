@@ -1,7 +1,7 @@
 import './style.css'
 
 import { create } from '../utilities'
-import { decrement_index, increment_index } from '../../publish_subscribe/data_manager';
+import { increment_index } from '../../publish_subscribe/data_manager';
 
 const component = () => {
 

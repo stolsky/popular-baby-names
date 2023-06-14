@@ -42,7 +42,7 @@ class Chart extends Diagram {
             .domain([last, first])
             .range([ height - height * .175, 0 ])
 
-        this.line_generator = line()
+        this.line_generator = line<{ year: Date, pos: number }>()
             // .x((d) => this.scale_x(d[0]))
             // .y((d) => this.scale_y(d[1]))
             // .defined((d) => d[1] >= first && d[1] <= last)
@@ -67,11 +67,11 @@ class Chart extends Diagram {
         const HEIGHT_04 = this.dimension.height * .035
 
         this.selection.selectAll('path').remove()
-        this.selection.selectAll('lines')
+        this.selection.selectAll<SVGElement, TNameData>('lines')
             .data(this.data_binding.values())
             .enter()
             .append('path')
-                .on('mouseenter', (_, i) => this.highlight(i.name))
+                .on('mouseenter', (_d, i) => this.highlight(i.name))
                 .on('mouseleave', this.dehighlight)
                 .attr('class', (d) => validate_class_name(d.name))
                 .attr('transform', `translate(${5}, ${HEIGHT_04})`)
@@ -83,9 +83,9 @@ class Chart extends Diagram {
                 .style('visibility', (d) => (d.color === Diagram.DEFAULT_COLOR) ? 'hidden' : 'visible')
     
         const current_names = data.map((set) => set.name)
-        this.selection.selectAll('circle')
+        this.selection.selectAll<SVGElement, TNameData>('circle')
             .style('visibility', (d) => (current_names.includes(d.name)) ? 'visible' : 'hidden')
-            .style('fill', (d) => d.color)
+            .attr('fill', (d) => d.color ?? Diagram.DEFAULT_COLOR)
             .raise()
         
         this.selection.selectAll('dots')
@@ -112,13 +112,13 @@ class Chart extends Diagram {
                     Tooltip.hide()
                 })
                 .attr('transform', `translate(${5}, ${HEIGHT_04})`)
-                .style('fill', (d) => d.color ?? '#000000')
+                .style('fill', (d) => d.color ?? Diagram.DEFAULT_COLOR)
                 .attr('cx', () => this.scale_x(year) )
                 .attr('cy', (d) => this.scale_y(d.pos) )
                 .attr('r', 5)
         
         data.forEach((set) => this.selection.selectAll(`circle.${validate_class_name(set.name)}`)
-            .style('fill', set.color ?? '#000000')
+            .style('fill', set.color ?? Diagram.DEFAULT_COLOR)
         )
     }
 }
