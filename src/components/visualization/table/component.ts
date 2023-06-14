@@ -17,7 +17,8 @@ class Table extends Diagram {
             .style('opacity', 1)
             .on('mouseenter', (_d, i) => this.highlight(i.name))
             .on('mouseleave', this.dehighlight)
-        .call((g) => g.transition().duration(Diagram.DEFAULT_CHANGE_DURATION)
+        .call((g) => g
+            .transition().duration(Diagram.DEFAULT_CHANGE_DURATION)
             .attr('transform', (_d, i: number) => `translate(0,${i * Table.ROW_GAP})`)
             .style('opacity', 1))
         .call((g) => g.append('rect')
@@ -43,15 +44,16 @@ class Table extends Diagram {
 
     private exit_data = (exit: Selection<SVGElement, TNameData, SVGSVGElement, unknown>) => exit
         .call((g) => g
-            .transition()
-            .duration(Diagram.DEFAULT_CHANGE_DURATION)
+            .transition().duration(Diagram.DEFAULT_CHANGE_DURATION)
             .attr('transform', `translate(0, ${this.dimension.height})`)
             .style('opacity', 0)
             .remove()
         )
 
     private update_data = (update: Selection<SVGElement, TNameData, SVGSVGElement, unknown>) => update
-        .call((g) => g.transition().duration(Diagram.DEFAULT_CHANGE_DURATION).attr('transform', (_d, i: number) => `translate(0,${i * Table.ROW_GAP})`))
+        .call((g) => g
+            .transition().duration(Diagram.DEFAULT_CHANGE_DURATION)
+            .attr('transform', (_d, i: number) => `translate(0,${i * Table.ROW_GAP})`))
         .call((g) => g.select('text tspan.Position').text((d) => `${this.format_position(d.pos)}.`))
         .call((g) => g.select('text tspan.Change').text((d) => this.calculate_change(d.name, d.pos)))
         .call((g) => g.select('text tspan.Name').text((d) => d.name))
