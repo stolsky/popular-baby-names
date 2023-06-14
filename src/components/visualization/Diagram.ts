@@ -1,6 +1,6 @@
 import { create } from '../utilities'
 import { TDataByName, TDimension, TMargin, TNameData } from '../shared_types'
-import { BaseType, active, select, selectAll } from 'd3'
+import { BaseType, select, selectAll } from 'd3'
 import { validate_class_name } from '../../publish_subscribe/data_manager'
 
 class Diagram {
@@ -122,7 +122,7 @@ class Diagram {
 
     get_html = (): HTMLElement => this.html
 
-    update = (year: Date, data?: TNameData[]): void => {}
+    update = (_year: Date, _data?: TNameData[]): void => {}
 }
 
 export default Diagram
