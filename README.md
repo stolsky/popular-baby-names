@@ -1,7 +1,7 @@
 # Popular Baby Names
 
 [![Tests](https://github.com/w0lf3n/popular-baby-names/actions/workflows/test.yml/badge.svg)](https://github.com/w0lf3n/popular-baby-names/actions/workflows/test.yml)
-[![Build](https://github.com/w0lf3n/popular-baby-names/actions/workflows/deploy.yml/badge.svg)](https://github.com/w0lf3n/popular-baby-names/actions/workflows/deploy.yml)
+[![Build](https://github.com/w0lf3n/popular-baby-names/actions/workflows/build.yml/badge.svg)](https://github.com/w0lf3n/popular-baby-names/actions/workflows/build.yml)
 
 Analyze and visualize baby names from open data.
 
