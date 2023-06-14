@@ -1,0 +1,13 @@
+
+.Controls .Button {
+    cursor: pointer;
+    display: block;
+    transition: scale 0.5s;
+}
+.Controls .Button:hover {
+    scale: 1.5;
+}
+
+.Controls .Button.Icon {
+    font-size: 2rem
+}

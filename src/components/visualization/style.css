@@ -1,0 +1,33 @@
+.Visualization {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    border-bottom: 6px dotted lightgray;
+}
+
+.Visualization .Title {
+    text-transform: capitalize;
+    font-variant: small-caps;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    margin: 0;
+    gap: 0
+}
+.Visualization .Title .Icon {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.Visualization .Title .Icon.Baby-Boy {
+    background-image: url(/baby-boy.png);
+}
+.Visualization .Title .Icon.Baby-Girl {
+    background-image: url(/baby-girl.png);
+}

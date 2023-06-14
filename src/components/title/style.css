@@ -1,0 +1,11 @@
+.Title {
+    display: flex;
+    gap: 2rem;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 2rem;
+    margin-block: 2rem;
+}
+.Title p {
+    margin: 0;
+}

@@ -1,0 +1,6 @@
+.Table svg {
+    cursor: default;
+}
+.Table svg g text .Change {
+    font-size: 80%;
+}
