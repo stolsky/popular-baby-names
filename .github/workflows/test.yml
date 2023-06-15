@@ -10,6 +10,8 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.coverage.outputs.coverage }}
 
     steps:
       - name: Checkout repo
@@ -28,6 +30,8 @@ jobs:
         run: npm run build
         
       - name: Run Tests
-        run: |
-          npm run test
-          npm run coverage
+        run: npm run test
+        
+      - name: Run Test Coverage
+        id: coverage
+        run: npm run coverage
