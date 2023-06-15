@@ -33,5 +33,5 @@ jobs:
         run: npm run test
         
       - name: Run Test Coverage
-      - id: coverage
+        id: coverage
         run: npm run coverage
