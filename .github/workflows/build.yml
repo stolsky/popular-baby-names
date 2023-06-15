@@ -30,4 +30,5 @@ jobs:
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
-          path: './dist'
+          name: dist
+          path: '*/dist'
