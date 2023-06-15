@@ -12,8 +12,6 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Build
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.build.outputs.dist }}
 
     steps:
       - name: Checkout repo
@@ -26,7 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build project
-        id: build
         run: npm run build
 
       - name: Upload production-ready build files
