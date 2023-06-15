@@ -1,5 +1,5 @@
 {
-  "name": "polular-baby-names",
+  "name": "popular-baby-names",
   "version": "1.0.0",
   "description": "Analyze and visualize baby names from open data.",
   "type": "module",
