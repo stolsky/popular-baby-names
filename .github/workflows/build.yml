@@ -29,4 +29,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: ./dist
+          path: dist
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
