@@ -2,29 +2,30 @@ name: Deploy
 
 on:
   pull_request:
+    types:
+      - closed
     branches:
-      - master
+    - master
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
-  build:
-    needs: [ test ]
-    uses: ./.github/workflows/build.yml
-  deploy:
-    name: Deploy
-    needs: [ build ]
-    runs-on: ubuntu-latest
+    deploy:
+      name: Deploy
+      if: github.event.pull_request.merged == true
+      runs-on: ubuntu-latest
+      steps:
+        - name: Test
+          uses: ./.github/workflows/test.yml
 
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: production
-          path: ./dist
+        - name: Build
+        - uses: ./.github/workflows/build.yml,
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          #github_token: ${{ secrets.GITHUB_TOKEN }}
-          folder: dist
+        - name: Download artifact
+          uses: actions/download-artifact@v3
+          with:
+            name: production
+            path: ./dist
+
+        - name: Deploy to GitHub Pages
+          uses: JamesIves/github-pages-deploy-action@v4
+          with:
+            folder: dist
