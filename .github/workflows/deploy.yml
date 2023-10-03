@@ -19,11 +19,11 @@ jobs:
         - name: Build
         - uses: ./.github/workflows/build.yml,
 
-        - name: Download artifact
-          uses: actions/download-artifact@v3
-          with:
-            name: production
-            path: ./dist
+        # - name: Download artifact
+        #   uses: actions/download-artifact@v3
+        #   with:
+        #     name: production
+        #     path: ./dist
 
         - name: Deploy to GitHub Pages
           uses: JamesIves/github-pages-deploy-action@v4
