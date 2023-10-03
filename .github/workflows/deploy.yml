@@ -12,6 +12,7 @@ jobs:
     needs: [ test ]
     uses: ./.github/workflows/build.yml
   deploy:
+    name: Deploy
     needs: [ build ]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
