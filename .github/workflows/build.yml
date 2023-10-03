@@ -1,11 +1,7 @@
 name: Build
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - master
+  workflow_call:
 
 jobs:
   build:
