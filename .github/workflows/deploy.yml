@@ -8,17 +8,21 @@ on:
     - master
 
 jobs:
-    deploy:
+  test:
+    name: Test
+    uses: ./.github/workflows/test.yml
+
+  build:
+    name: Build
+    needs: [ test ]
+    uses: ./.github/workflows/build.yml,
+
+  deploy:
       name: Deploy
       if: github.event.pull_request.merged == true
+      needs: [ build ]
       runs-on: ubuntu-latest
       steps:
-        - name: Test
-          uses: ./.github/workflows/test.yml
-
-        - name: Build
-          uses: ./.github/workflows/build.yml,
-
         - name: Download artifact
           uses: actions/download-artifact@v3
           with:
@@ -29,3 +33,4 @@ jobs:
           uses: JamesIves/github-pages-deploy-action@v4
           with:
             folder: dist
+            
