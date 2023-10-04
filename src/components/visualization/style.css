@@ -26,8 +26,8 @@
     background-size: contain;
 }
 .Visualization .Title .Icon.Baby-Boy {
-    background-image: url(/baby-boy.png);
+    background-image: url(/images/baby-boy.png);
 }
 .Visualization .Title .Icon.Baby-Girl {
-    background-image: url(/baby-girl.png);
+    background-image: url(/images/baby-girl.png);
 }
