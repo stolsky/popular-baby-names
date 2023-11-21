@@ -1,6 +1,6 @@
 # Popular Baby Names
 
-[![Tests](https://github.com/stolsky/popular-baby-names/actions/workflows/test.yml/badge.svg)](https://github.com/stolsky/popular-baby-names/actions/workflows/test.yml)
+[![Tests](https://github.com/stolsky/popular-baby-names/actions/workflows/tests.yml/badge.svg)](https://github.com/stolsky/popular-baby-names/actions/workflows/tests.yml)
 [![Build](https://github.com/stolsky/popular-baby-names/actions/workflows/build.yml/badge.svg)](https://github.com/stolsky/popular-baby-names/actions/workflows/build.yml)
 [![Deploy](https://github.com/stolsky/popular-baby-names/actions/workflows/deploy.yml/badge.svg)](https://github.com/stolsky/popular-baby-names/actions/workflows/deploy.yml)
 
